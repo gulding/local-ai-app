@@ -1,4 +1,4 @@
-# 🦙 Privacy-First Local AI Document Assistant
+# 🦙 Privacy-Local AI Document Assistant
 
 An offline, secure AI web application built in Python that runs Large Language Models locally on your hardware using Ollama, LangChain, and Streamlit. Designed for processing confidential documents without data ever leaving your machine.
 
