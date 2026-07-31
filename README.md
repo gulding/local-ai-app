@@ -1,34 +1,38 @@
-# 🦙 Privacy-Local AI Document Assistant
+# 🦙 Enterprise Local RAG Assistant & Document Intelligence
 
-An offline, secure AI web application built in Python that runs Large Language Models locally on your hardware using Ollama, LangChain, and Streamlit. Designed for processing confidential documents without data ever leaving your machine.
+An offline, privacy-first Retrieval-Augmented Generation (RAG) platform built in Python using **LangChain**, **FAISS**, **Ollama**, and **Streamlit**. Designed for local semantic search, document ingestion, hyperparameter tuning, and dynamic persona injection on confidential files with zero cloud API dependencies.
 
 ---
 
 ## 🌟 Key Features
 
-* **🔒 100% Offline & Private:** Operates entirely locally via Ollama with zero external API calls, ensuring absolute data privacy for sensitive documents.
-* **📄 Secure Document Ingestion:** Built-in PDF reader (`PyPDF2`) that injects document context directly into the local model's prompt pipeline via the sidebar.
-* **⚡ Real-Time Token Streaming:** Features live, chunk-by-chunk streaming responses with a dynamic typing indicator for a smooth user experience.
-* **🐍 Pure Python Architecture:** Built using Streamlit to deliver a reactive, enterprise-grade user interface without requiring complex frontend frameworks.
+* **🧠 Semantic FAISS Vector Search:** Slices massive PDFs using `RecursiveCharacterTextSplitter` and indexes text into a high-performance local vector store using `nomic-embed-text`.
+* **🔒 100% Offline & Zero Latency Privacy:** Runs Meta's `llama3.2` locally via Ollama to query sensitive corporate, legal, or financial documents with complete data isolation.
+* **🎭 Dynamic System Personas:** Instant system prompt switching across custom personas (e.g., *Balkan Legal & Compliance Analyst*, *Senior Python Developer*, *Executive Summarizer*).
+* **🎛️ Hyperparameter Controls & Anti-Looping:** Interactive sidebar sliders for temperature tuning, token context buffers, and custom repetition penalties to eliminate text degeneration loops.
+* **⚡ Real-Time Token Streaming:** Chunk-by-chunk output generation via LangChain execution chains for responsive user UX.
 
 ---
 
 ## 🛠️ Tech Stack
 
 * **UI Framework:** [Streamlit](https://streamlit.io/)
-* **AI Orchestration:** [LangChain](https://www.langchain.com/) (`langchain-community`)
-* **Local Inference Engine:** [Ollama](https://ollama.com/) running **Meta Llama 3.2 (3B)**
-* **Document Processing:** PyPDF2
+* **Vector Database:** [FAISS (Facebook AI Similarity Search)](https://github.com/facebookresearch/faiss)
+* **Embedding Model:** `nomic-embed-text` (via Ollama)
+* **LLM Engine:** Meta `llama3.2` (via Ollama)
+* **AI Orchestration:** LangChain (`langchain-ollama`, `langchain-community`)
+* **Document Parser:** PyPDF2
 
 ---
 
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
-Ensure you have [Ollama](https://ollama.com/) installed and running on your system with the Llama 3.2 model pulled:
+Install [Ollama](https://ollama.com/) and pull both the generation and embedding models:
 ```bash
 ollama run llama3.2
-2. Clone and Setup Environment
+ollama pull nomic-embed-text
+2. Setup Project & Environment
 Bash
 git clone [https://github.com/gulding/local-ai-app.git](https://github.com/gulding/local-ai-app.git)
 cd local-ai-app
@@ -37,9 +41,9 @@ python -m venv venv
 # On Windows:
 .\venv\Scripts\activate
 3. Install Dependencies
-pip install langchain langchain-community streamlit PyPDF2
-
+Bash
+pip install langchain-ollama langchain-community langchain-text-splitters faiss-cpu streamlit PyPDF2
 4. Run the Application
 Bash
 streamlit run app.py
-Open http://localhost:8501 in your browser to interact with your local offline assistant.
+Open http://localhost:8501 to upload private PDFs, select your AI persona, and perform vector-backed document analysis.
